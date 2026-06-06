@@ -1,0 +1,53 @@
+streamlit>=1.35.0
+numpy>=1.24.0
+scipy>=1.11.0
+matplotlib>=3.7.0
+pandas>=2.0.0
+
+# 형남공학관 수압 몬테카를로 시뮬레이터
+
+## 로컬 실행
+
+```bash
+# 1. 의존성 설치
+pip install -r requirements.txt
+
+# 2. 앱 실행
+streamlit run app.py
+```
+
+브라우저에서 `http://localhost:8501` 열기
+
+---
+
+## Streamlit Cloud 무료 배포 (추천)
+
+1. GitHub 저장소 생성 후 이 폴더 업로드
+2. [share.streamlit.io](https://share.streamlit.io) 접속
+3. GitHub 연결 → 저장소/브랜치/`app.py` 선택
+4. **Deploy** 클릭 → 고유 URL 자동 생성
+
+---
+
+## 폴더 구조
+
+```
+hyungnam_simulator/
+├── app.py            # 메인 Streamlit 앱
+├── requirements.txt  # 의존성
+└── README.md
+```
+
+---
+
+## 물리 모델
+
+| 수식 | 설명 |
+|------|------|
+| Re = ρvD/μ | 레이놀즈 수 |
+| f (Colebrook) | Brent 수치해석으로 마찰계수 계산 |
+| h_L = f·(L/D)·v²/(2g) | Darcy-Weisbach 손실수두 |
+| P₂ = P₁ + ρg(h_pump − Δz − h_L) | 베르누이 방정식 |
+
+- **경고 기준**: 150 kPa 이하
+- **부압 기준**: 101.325 kPa (대기압) 이하
